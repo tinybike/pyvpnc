@@ -1,0 +1,13 @@
+{
+    "IPSec_ID": "",
+    "IPSec_gateway": "",
+    "IPSec_secret": "",
+    "Xauth_username": "",
+    "Xauth_password": "",
+    "IKE_Authmode": "",
+    "IKE_DH_Group": "dh2",
+    "DNSUpdate": "no",
+    "NAT_Traversal_Mode": "force-natt",
+    "Local_Port": 0,
+    "Cisco_UDP_Encapsulation_Port": 0
+}

@@ -1,0 +1,2 @@
+include MANIFEST.in LICENSE.txt README.rst test_requirements.txt
+include vpnc/config-sample.json
