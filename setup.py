@@ -7,7 +7,7 @@ except ImportError:
 setup(
     name="vpnc",
     version="0.1.0",
-    description="Use VPNC from Python",
+    description="Use vpnc from Python",
     author="Jack Peterson",
     author_email="<jack@tinybike.net>",
     maintainer="Jack Peterson",

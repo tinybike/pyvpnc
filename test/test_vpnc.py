@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Unit tests for vpnc."""
+"""Unit tests for pyvpnc."""
 import sys
 import os
 import subprocess

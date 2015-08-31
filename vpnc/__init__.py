@@ -1,11 +1,11 @@
 #!/usr/bin/env python
-"""Use VPNC from Python.
+"""Use vpnc from Python.
 
 Usage:
 
     from vpnc import VPNC
 
-    example_config = {
+    vpnc = VPNC(config={
         "IPSec_ID": "my IPSec ID",
         "IPSec_gateway": "my.gateway.com",
         "IPSec_secret": "my IPSec secret",
@@ -17,8 +17,7 @@ Usage:
         "NAT_Traversal_Mode": "force-natt",
         "Local_Port": 0,
         "Cisco_UDP_Encapsulation_Port": 0
-    }
-    vpnc = VPNC(config=example_config)
+    })
 
     with vpnc.vpn():
         # do stuff on the VPN!
