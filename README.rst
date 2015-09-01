@@ -4,12 +4,12 @@ pyvpnc
 .. image:: https://badge.fury.io/py/vpnc.svg
     :target: http://badge.fury.io/py/vpnc
 
-Use vpnc from Python.
+pyvpnc is a Python connector for [vpnc](http://linux.die.net/man/8/vpnc), a Cisco VPN concentrator/router client.  The vpnc daemon requires elevated permissions to run; you will be prompted for your admin/sudo password if needed.
 
 Installation
 ^^^^^^^^^^^^
 
-First you need to install `vpnc`.  On Debian/Ubuntu::
+First, install vpnc.  On Debian/Ubuntu::
 
     apt-get install vpnc
 
@@ -28,21 +28,16 @@ Usage
 
     from vpnc import VPNC
 
-    vpnc = VPNC(config={
+    vpn_client = VPNC(config={
         "IPSec_ID": "my IPSec ID",
         "IPSec_gateway": "my.gateway.com",
         "IPSec_secret": "my IPSec secret",
         "Xauth_username": "my Xauth username",
         "Xauth_password": "my Xauth password",
-        "IKE_Authmode": "psk",
-        "IKE_DH_Group": "dh2",
-        "DNSUpdate": "no",
-        "NAT_Traversal_Mode": "force-natt",
-        "Local_Port": 0,
-        "Cisco_UDP_Encapsulation_Port": 0
+        "IKE_Authmode": "psk"
     })
 
-    with vpnc.vpn():
+    with vpn_client.vpn():
         # do stuff on the VPN!
 
 Tests

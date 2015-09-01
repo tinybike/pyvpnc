@@ -1,11 +1,13 @@
 #!/usr/bin/env python
-"""Unit tests for pyvpnc."""
+"""Unit tests for vpnc."""
 import sys
 import os
+import json
 import subprocess
 import unittest
 
-ROOT = os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir)
+HERE = os.path.dirname(os.path.realpath(__file__))
+ROOT = os.path.normpath(os.path.join(HERE, os.pardir))
 sys.path.insert(0, ROOT)
 
 from vpnc import VPNC
@@ -13,7 +15,8 @@ from vpnc import VPNC
 class TestVPNC(unittest.TestCase):
 
     def setUp(self):
-        self.vpnc = VPNC()
+        with open(os.path.join(HERE, "config.json")) as f:
+            self.vpnc = VPNC(config=json.load(f))
         assert(self.vpnc is not None)
         assert(self.vpnc.config is not None)
         assert(type(self.vpnc.config) == dict)
@@ -21,9 +24,10 @@ class TestVPNC(unittest.TestCase):
                                                     "IPSec_gateway",
                                                     "IPSec_secret",
                                                     "Xauth_username",
-                                                    "Xauth_password")))
+                                                    "Xauth_password",
+                                                    "IKE_Authmode")))
         assert(self.vpnc.config_file == "tempvpnc.conf")
-        assert(self.vpnc.temp_config_path == os.path.join(os.path.normpath(ROOT),
+        assert(self.vpnc.temp_config_path == os.path.join(ROOT,
                                                           "vpnc",
                                                           "tempvpnc.conf"))
         assert(self.vpnc.config_folder == "/etc/vpnc")

@@ -1,25 +1,20 @@
 #!/usr/bin/env python
-"""Use vpnc from Python.
+"""Connects to a remote Cisco VPN using vpnc.
 
 Usage:
 
     from vpnc import VPNC
 
-    vpnc = VPNC(config={
+    vpn_client = VPNC(config={
         "IPSec_ID": "my IPSec ID",
         "IPSec_gateway": "my.gateway.com",
         "IPSec_secret": "my IPSec secret",
         "Xauth_username": "my Xauth username",
         "Xauth_password": "my Xauth password",
         "IKE_Authmode": "psk",
-        "IKE_DH_Group": "dh2",
-        "DNSUpdate": "no",
-        "NAT_Traversal_Mode": "force-natt",
-        "Local_Port": 0,
-        "Cisco_UDP_Encapsulation_Port": 0
     })
 
-    with vpnc.vpn():
+    with vpn_client.vpn():
         # do stuff on the VPN!
 
 (c) Jack Peterson (jack@tinybike.net), 8/31/2015
@@ -27,26 +22,19 @@ Usage:
 """
 import sys
 import os
-import json
 import subprocess
-import getopt
 from contextlib import contextmanager
 
 HERE = os.path.dirname(os.path.realpath(__file__))
 
 class VPNC(object):
 
-    def __init__(self, config=None,
+    def __init__(self, config=dict(),
                        config_file="tempvpnc.conf",
                        config_folder=None):
+        self.config = config
         self.config_file = config_file
         self.temp_config_path = os.path.join(HERE, self.config_file)
-        if config is None:
-            config_json = os.path.join(HERE, "config.json")
-            with open(config_json) as f:
-                self.config = json.load(f)
-        else:
-            self.config = config
         self.config_folder = config_folder
         if config_folder is None:
             if sys.platform.startswith("linux"):
