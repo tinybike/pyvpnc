@@ -4,7 +4,7 @@ pyvpnc
 .. image:: https://badge.fury.io/py/vpnc.svg
     :target: http://badge.fury.io/py/vpnc
 
-pyvpnc is a Python connector for [vpnc](http://linux.die.net/man/8/vpnc), a Cisco VPN concentrator/router client.  The vpnc daemon requires elevated permissions to run; you will be prompted for your admin/sudo password if needed.
+pyvpnc is a Python connector for `vpnc <http://linux.die.net/man/8/vpnc>`_, a Cisco VPN concentrator/router client.  The vpnc daemon requires elevated permissions to run; you will be prompted for your admin/sudo password if needed.
 
 Installation
 ^^^^^^^^^^^^
