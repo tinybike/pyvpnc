@@ -45,15 +45,13 @@ class VPNC(object):
 
     def create_config_file(self):
         """Creates a formatted VPNC config file."""
-        with open(self.temp_config_path, "w+") as f:
-            print >> f, (
-                "IPSec gateway %(IPSec_gateway)s\n"
-                "IPSec ID %(IPSec_ID)s\n"
-                "IPSec secret %(IPSec_secret)s\n"
-                "IKE Authmode %(IKE_Authmode)s\n"
-                "Xauth username %(Xauth_username)s\n"
-                "Xauth password %(Xauth_password)s"
-            ) % self.config
+        with open(self.temp_config_path, "+w") as f:
+            f.write(f"IPSec gateway {self.config['IPSec_gateway']}\n")
+            f.write(f"IPSec ID {self.config['IPSec_ID']}\n")   
+            f.write(f"IPSec secret {self.config['IPSec_secret']}\n")
+            f.write(f"IKE Authmode {self.config['IKE_Authmode']}\n")
+            f.write(f"Xauth username {self.config['Xauth_username']}\n")
+            f.write(f"Xauth password {self.config['Xauth_password']}\n")
 
     def move_config_file(self):
         """Moves the VPNC config file to /etc/vpnc (Linux) or
